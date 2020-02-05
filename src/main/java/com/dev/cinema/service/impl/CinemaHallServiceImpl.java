@@ -15,19 +15,11 @@ public class CinemaHallServiceImpl implements CinemaHallService {
 
     @Override
     public CinemaHall add(CinemaHall cinemaHall) throws DataProcessingException {
-        try {
-            return cinemaHallDao.add(cinemaHall);
-        } catch (DataProcessingException e) {
-            throw new DataProcessingException("Error adding Cinema Hall", e);
-        }
+        return cinemaHallDao.add(cinemaHall);
     }
 
     @Override
     public List<CinemaHall> getAll() throws DataProcessingException {
-        try {
-            return cinemaHallDao.getAll();
-        } catch (DataProcessingException e) {
-            throw new DataProcessingException("Error getting all Cinema Halls", e);
-        }
+        return cinemaHallDao.getAll();
     }
 }

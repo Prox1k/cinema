@@ -16,20 +16,12 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public MovieSession add(MovieSession session) throws DataProcessingException {
-        try {
-            return movieSessionDao.add(session);
-        } catch (DataProcessingException e) {
-            throw new DataProcessingException("Error adding Movie Session", e);
-        }
+        return movieSessionDao.add(session);
     }
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date)
             throws DataProcessingException {
-        try {
-            return movieSessionDao.findAvailableSessions(movieId, date);
-        } catch (DataProcessingException e) {
-            throw new DataProcessingException("Error finding available session", e);
-        }
+        return movieSessionDao.findAvailableSessions(movieId, date);
     }
 }
