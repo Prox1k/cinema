@@ -6,7 +6,6 @@ import com.dev.cinema.lib.Inject;
 import com.dev.cinema.lib.Service;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.service.MovieService;
-
 import java.util.List;
 
 @Service
@@ -21,10 +20,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getAll() throws DataProcessingException {
-        try {
-            return movieDao.getAll();
-        } catch (DataProcessingException e) {
-            throw new DataProcessingException("Error retrieving all movies", e);
-        }
+        return movieDao.getAll();
     }
 }
