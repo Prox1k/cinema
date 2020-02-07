@@ -6,11 +6,13 @@ import com.dev.cinema.lib.Injector;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import com.dev.cinema.service.AuthenticationService;
 import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
+import com.dev.cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -94,5 +96,13 @@ public class Main {
         User user1 = authenticationService
                 .login("vadym.chaika98@gmail1.com", "pass");
         System.out.println(user1.getEmail());
+
+        ShoppingCartService shoppingCartService = (ShoppingCartService)
+                injector.getInstance(ShoppingCartService.class);
+        ShoppingCart sc = shoppingCartService.getByUser(user1);
+        MovieSession mv1 = new MovieSession();
+        mv1.setMovie(movie1);
+        shoppingCartService.addSession(movieSessionService.add(mv1), user1);
+        System.out.println(shoppingCartService.getByUser(user1).getTickets().get(0));
     }
 }
