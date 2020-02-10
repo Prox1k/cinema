@@ -93,8 +93,8 @@ public class Main {
         AuthenticationService authenticationService = (AuthenticationService)
                 injector.getInstance(AuthenticationService.class);
 
-        User user1 = authenticationService.register("vadym.chaika98@gmail.com"
-                , "pass");
+        User user1 = authenticationService.register("vadym.chaika98@gmail.com",
+                "pass");
 
         System.out.println(user1.getEmail());
 
