@@ -12,11 +12,11 @@ import javax.persistence.Table;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(unique = true)
     private String email;
 
-    private Long id;
     private String password;
     private byte[] salt;
 
