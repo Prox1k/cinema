@@ -29,7 +29,7 @@ public class OrderController {
         return orderService.completeOrder(userService.findByEmail(userResponseDto.getEmail()));
     }
 
-    @PostMapping("/")
+    @PostMapping
     private List<OrderDto> getAllOrders(@RequestBody UserDto userDto) {
         User user = userService.findByEmail(userDto.getEmail());
         return orderService.getOrderHistory(user)
@@ -42,7 +42,7 @@ public class OrderController {
         OrderDto orderDto = new OrderDto();
         orderDto.setOrderDate(order.getOrderDate());
         orderDto.setTickets(order.getTickets());
-        orderDto.setUser(order.getUser());
+        orderDto.setUserId(order.getUser().getId());
         return orderDto;
     }
 }

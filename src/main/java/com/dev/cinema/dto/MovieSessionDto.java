@@ -1,27 +1,24 @@
 package com.dev.cinema.dto;
 
-import com.dev.cinema.model.CinemaHall;
-import com.dev.cinema.model.Movie;
-
 public class MovieSessionDto {
-    private Movie movie;
-    private CinemaHall cinemaHall;
+    private Long movieId;
+    private Long cinemaHallId;
     private String showTime;
 
-    public Movie getMovie() {
-        return movie;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
-    public CinemaHall getCinemaHall() {
-        return cinemaHall;
+    public Long getCinemaHallId() {
+        return cinemaHallId;
     }
 
-    public void setCinemaHall(CinemaHall cinemaHall) {
-        this.cinemaHall = cinemaHall;
+    public void setCinemaHallId(Long cinemaHallId) {
+        this.cinemaHallId = cinemaHallId;
     }
 
     public String getShowTime() {

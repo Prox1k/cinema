@@ -4,15 +4,18 @@ import com.dev.cinema.dto.UserDto;
 import com.dev.cinema.exceptions.AuthenticationException;
 import com.dev.cinema.exceptions.DataProcessingException;
 import com.dev.cinema.service.AuthenticationService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
+    private static final Logger LOGGER = LogManager.getLogger(AuthenticationController.class);
 
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
@@ -23,7 +26,7 @@ public class AuthenticationController {
         try {
             authenticationService.login(userDto.getEmail(), userDto.getPassword());
         } catch (AuthenticationException e) {
-            return e.getMessage();
+            LOGGER.error("Can't login, wrong parameters", e);
         }
         return "Login successful!";
     }
@@ -33,7 +36,7 @@ public class AuthenticationController {
         try {
             authenticationService.register(userDto.getEmail(), userDto.getPassword());
         } catch (DataProcessingException e) {
-            return e.getMessage();
+            LOGGER.error("Registration is failed, wrong parameters", e);
         }
         return "Registration successful!";
     }

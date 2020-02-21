@@ -1,13 +1,12 @@
 package com.dev.cinema.dto;
 
 import com.dev.cinema.model.Ticket;
-import com.dev.cinema.model.User;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderDto {
     private List<Ticket> tickets;
-    private User user;
+    private Long userId;
     private LocalDateTime orderDate;
 
     public List<Ticket> getTickets() {
@@ -18,12 +17,12 @@ public class OrderDto {
         this.tickets = tickets;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getOrderDate() {

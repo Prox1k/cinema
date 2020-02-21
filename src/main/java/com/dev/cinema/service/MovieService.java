@@ -8,4 +8,6 @@ public interface MovieService {
     Movie add(Movie movie);
 
     List<Movie> getAll() throws DataProcessingException;
+
+    Movie getById(Long id);
 }

@@ -12,4 +12,6 @@ public interface MovieSessionDao {
             throws DataProcessingException;
 
     List<MovieSession> getAll();
+
+    MovieSession getById(Long id);
 }

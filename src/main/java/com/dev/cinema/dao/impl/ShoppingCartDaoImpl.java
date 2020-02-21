@@ -66,4 +66,13 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             throw new DataProcessingException("Cannot create shopping cart ", e);
         }
     }
+
+    @Override
+    public ShoppingCart getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(ShoppingCart.class, id);
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find by id", e);
+        }
+    }
 }

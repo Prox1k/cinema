@@ -2,6 +2,8 @@ package com.dev.cinema.controllers;
 
 import com.dev.cinema.dto.MovieSessionDto;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.service.CinemaHallService;
+import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,20 +21,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/moviesessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
+    private final MovieService movieService;
+    private final CinemaHallService cinemaHallService;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm");
 
-    public MovieSessionController(MovieSessionService movieSessionService) {
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  MovieService movieService,
+                                  CinemaHallService cinemaHallService) {
         this.movieSessionService = movieSessionService;
+        this.movieService = movieService;
+        this.cinemaHallService = cinemaHallService;
     }
 
     @PostMapping("/add")
-    private MovieSession addMovieSession(@RequestBody MovieSessionDto movieSessionDto) {
+    private String addMovieSession(@RequestBody MovieSessionDto movieSessionDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setShowTime(LocalDateTime.parse(movieSessionDto.getShowTime(), FORMATTER));
-        movieSession.setMovie(movieSessionDto.getMovie());
-        movieSession.setCinemaHall(movieSessionDto.getCinemaHall());
-        return movieSessionService.add(movieSession);
+        movieSession.setMovie(movieService.getById(movieSessionDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.getById(movieSessionDto.getCinemaHallId()));
+        movieSessionService.add(movieSession);
+        return "Added movie session";
     }
 
     @GetMapping("/available")
@@ -45,7 +54,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/")
+    @GetMapping
     private List<MovieSessionDto> getAll() {
         return movieSessionService
                 .getAll()
@@ -56,8 +65,8 @@ public class MovieSessionController {
 
     private MovieSessionDto getMovieSessionDto(MovieSession movieSession) {
         MovieSessionDto movieSessionDto = new MovieSessionDto();
-        movieSessionDto.setCinemaHall(movieSession.getCinemaHall());
-        movieSessionDto.setMovie(movieSession.getMovie());
+        movieSession.setMovie(movieService.getById(movieSessionDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.getById(movieSessionDto.getCinemaHallId()));
         movieSessionDto.setShowTime(movieSession.getShowTime().format(FORMATTER));
         return movieSessionDto;
     }

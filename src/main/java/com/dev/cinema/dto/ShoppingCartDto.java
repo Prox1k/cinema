@@ -1,19 +1,18 @@
 package com.dev.cinema.dto;
 
 import com.dev.cinema.model.Ticket;
-import com.dev.cinema.model.User;
 import java.util.List;
 
 public class ShoppingCartDto {
-    private User user;
+    private Long userId;
     private List<Ticket> tickets;
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<Ticket> getTickets() {

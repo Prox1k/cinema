@@ -20,7 +20,7 @@ public class CinemaHallController {
         this.cinemaHallService = cinemaHallService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     private List<CinemaHallDto> getAllCinemaHalls() {
         return cinemaHallService.getAll()
                 .stream()
@@ -29,11 +29,12 @@ public class CinemaHallController {
     }
 
     @PostMapping("/add")
-    private void addCinemaHall(@RequestBody CinemaHallDto cinemaHallDto) {
+    private String addCinemaHall(@RequestBody CinemaHallDto cinemaHallDto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setDescription(cinemaHallDto.getDescription());
         cinemaHall.setCapacity(cinemaHallDto.getCapacity());
         cinemaHallService.add(cinemaHall);
+        return "Added cinema hall";
     }
 
     private CinemaHallDto getCinemaHallDto(CinemaHall cinemaHall) {

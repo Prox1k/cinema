@@ -33,4 +33,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrderHistory(User user) {
         return orderDao.getAllUserOrders(user);
     }
+
+    @Override
+    public Order getById(Long id) {
+        return orderDao.getById(id);
+    }
 }

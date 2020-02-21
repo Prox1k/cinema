@@ -8,4 +8,6 @@ public interface OrderService {
     Order completeOrder(User user);
 
     List<Order> getOrderHistory(User user);
+
+    Order getById(Long id);
 }
