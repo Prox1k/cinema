@@ -1,9 +1,12 @@
 package com.dev.cinema.service;
 
+import com.dev.cinema.exceptions.DataProcessingException;
 import com.dev.cinema.model.User;
 
 public interface UserService {
     User add(User user);
 
     User findByEmail(String email);
+
+    User findById(Long id) throws DataProcessingException;
 }

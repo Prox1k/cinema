@@ -55,4 +55,13 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             throw new DataProcessingException("Error while trying to find available sessions", e);
         }
     }
+
+    @Override
+    public List<MovieSession> getAll() {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM MovieSession ", MovieSession.class).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get all movie sessions", e);
+        }
+    }
 }
