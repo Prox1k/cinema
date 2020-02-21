@@ -22,4 +22,9 @@ public class CinemaHallServiceImpl implements CinemaHallService {
     public List<CinemaHall> getAll() throws DataProcessingException {
         return cinemaHallDao.getAll();
     }
+
+    @Override
+    public CinemaHall getById(Long id) throws DataProcessingException {
+        return cinemaHallDao.getById(id);
+    }
 }
