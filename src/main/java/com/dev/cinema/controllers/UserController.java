@@ -28,7 +28,10 @@ public class UserController {
     }
 
     @GetMapping("/byemail")
-    public User getUserByEmail(String email) {
-        return userService.findByEmail(email);
+    public UserDto getUserByEmail(String email) {
+        User user = userService.findByEmail(email);
+        UserDto userDto = new UserDto();
+        userDto.setEmail(user.getEmail());
+        return userDto;
     }
 }
